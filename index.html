@@ -4,30 +4,142 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Varun Kohli - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    header { background: #333; color: #fff; padding: 30px; text-align: center; }
-    header h1 { margin: 0; }
-    nav { text-align: center; padding: 10px; background: #444; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; }
-    section { padding: 20px; }
-    .projects { display: grid; gap: 20px; max-width: 800px; margin: auto; }
-    .project-card { background: #fff; padding: 20px; border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .btn { display: inline-block; margin-top: 10px; background: #007BFF; color: white;
-      padding: 10px 15px; text-decoration: none; border-radius: 5px; }
-    footer { background: #333; color: white; text-align: center; padding: 15px; margin-top: 30px; }
+    :root {
+      --bg: #f8f9fa;
+      --text: #212529;
+      --card: #ffffff;
+      --primary: #007BFF;
+      --nav: #0056b3;
+      --footer: #333;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #e4e4e4;
+      --card: #1f1f1f;
+      --primary: #0d6efd;
+      --nav: #0b3d91;
+      --footer: #000;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: var(--primary);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav {
+      background: var(--nav);
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .projects, .skills, .certificates, .testimonials {
+      display: grid;
+      gap: 30px;
+    }
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: var(--card);
+      color: var(--text);
+    }
+    footer {
+      background: var(--footer);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+      .projects, .skills, .certificates, .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (min-width: 769px) {
+      .projects, .skills, .certificates, .testimonials {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Varun Kohli</h1>
     <p>Freelance Web Developer</p>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
   </header>
 
   <nav>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -38,27 +150,306 @@
 
   <section id="projects" class="projects">
     <h2>My Projects</h2>
-    <div class="project-card">
-      <h3>Business Landing Page</h3>
+    <div class="card">
+      <h3><i class="fas fa-briefcase"></i> Business Landing Page</h3>
       <p>A responsive landing page for businesses.</p>
-      <a href="https://varunkohli018.github.io/Business-landing-/" class="btn">View Project</a>
+      <a href="https://varunkohli018.github.io/Business-landing-/" class="btn" target="_blank">View Project</a>
     </div>
-
-    <div class="project-card">
-      <h3>Blog Layout Page</h3>
+    <div class="card">
+      <h3><i class="fas fa-blog"></i> Blog Layout Page</h3>
       <p>A clean blog design layout using HTML & CSS.</p>
-      <a href="https://varunkohli018.github.io/Blog-layout-/" class="btn">View Project</a>
+      <a href="https://varunkohli018.github.io/Blog-layout-/" class="btn" target="_blank">View Project</a>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <div class="card"><strong>HTML & CSS</strong><br>Clean, semantic and responsive layouts</div>
+    <div class="card"><strong>JavaScript</strong><br>Basic interactivity and DOM manipulation</div>
+    <div class="card"><strong>Kodular / No-code Tools</strong><br>Android app building using drag-and-drop platforms</div>
+    <div class="card"><strong>Git & GitHub</strong><br>Version control and project hosting</div>
+  </section>
+
+  <section id="certificates" class="certificates">
+    <h2>Certificates</h2>
+    <div class="card">
+      <strong>HTML & CSS for Beginners</strong><br>
+      FreeCodeCamp - 2024
+    </div>
+    <div class="card">
+      <strong>Responsive Web Design</strong><br>
+      Coursera - 2024
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <h2>Client Testimonials</h2>
+    <div class="card">
+      <p><em>"Varun built a fantastic landing page for my startup. Very professional!"</em><br>– Rahul, Startup Founder</p>
+    </div>
+    <div class="card">
+      <p><em>"Timely delivery and great communication. Highly recommended!"</em><br>– Neha, Blogger</p>
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <p>Email: varun@example.com</p>
-    <p>GitHub: <a href="https://github.com/varunkohli018" target="_blank">varunkohli018</a></p>
+    <form action="mailto:varun@example.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
   </section>
 
   <footer>
     <p>&copy; 2025 Varun Kohli. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // Scroll animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Varun Kohli - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --text: #212529;
+      --card: #ffffff;
+      --primary: #007BFF;
+      --nav: #0056b3;
+      --footer: #333;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #e4e4e4;
+      --card: #1f1f1f;
+      --primary: #0d6efd;
+      --nav: #0b3d91;
+      --footer: #000;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: var(--primary);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    nav {
+      background: var(--nav);
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .projects, .skills, .certificates, .testimonials {
+      display: grid;
+      gap: 30px;
+    }
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: var(--card);
+      color: var(--text);
+    }
+    footer {
+      background: var(--footer);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+      .projects, .skills, .certificates, .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (min-width: 769px) {
+      .projects, .skills, .certificates, .testimonials {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Varun Kohli</h1>
+    <p>Freelance Web Developer</p>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Varun, a passionate freelance web developer focused on building responsive and user-friendly websites using free tools and GitHub.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="card">
+      <h3><i class="fas fa-briefcase"></i> Business Landing Page</h3>
+      <p>A responsive landing page for businesses.</p>
+      <a href="https://varunkohli018.github.io/Business-landing-/" class="btn" target="_blank">View Project</a>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-blog"></i> Blog Layout Page</h3>
+      <p>A clean blog design layout using HTML & CSS.</p>
+      <a href="https://varunkohli018.github.io/Blog-layout-/" class="btn" target="_blank">View Project</a>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <div class="card"><strong>HTML & CSS</strong><br>Clean, semantic and responsive layouts</div>
+    <div class="card"><strong>JavaScript</strong><br>Basic interactivity and DOM manipulation</div>
+    <div class="card"><strong>Kodular / No-code Tools</strong><br>Android app building using drag-and-drop platforms</div>
+    <div class="card"><strong>Git & GitHub</strong><br>Version control and project hosting</div>
+  </section>
+
+  <section id="certificates" class="certificates">
+    <h2>Certificates</h2>
+    <div class="card">
+      <strong>HTML & CSS for Beginners</strong><br>
+      FreeCodeCamp - 2024
+    </div>
+    <div class="card">
+      <strong>Responsive Web Design</strong><br>
+      Coursera - 2024
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <h2>Client Testimonials</h2>
+    <div class="card">
+      <p><em>"Varun built a fantastic landing page for my startup. Very professional!"</em><br>– Rahul, Startup Founder</p>
+    </div>
+    <div class="card">
+      <p><em>"Timely delivery and great communication. Highly recommended!"</em><br>– Neha, Blogger</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="mailto:varun@example.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Varun Kohli. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // Scroll animation
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
 </body>
 </html>
